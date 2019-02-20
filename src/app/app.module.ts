@@ -5,11 +5,13 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ShowTitleComponent } from './show-title/show-title.component';
+import { PaperFormComponent } from './paper-form/paper-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ShowTitleComponent
+    ShowTitleComponent,
+    PaperFormComponent
   ],
   imports: [
     BrowserModule,

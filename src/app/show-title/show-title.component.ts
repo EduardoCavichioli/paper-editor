@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { PAPER } from '../paper-mock';
+import { Component, OnInit, Input } from '@angular/core';
+import { Paper } from '../model/paper';
 
 @Component({
   selector: 'app-show-title',
@@ -7,7 +7,7 @@ import { PAPER } from '../paper-mock';
   styleUrls: ['./show-title.component.css']
 })
 export class ShowTitleComponent implements OnInit {
-  paper = PAPER;
+  @Input() paper: Paper;
   authorsColSize = '';
 
   constructor() { }
