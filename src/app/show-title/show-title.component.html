@@ -1,16 +1,16 @@
 <div class="title-wrapper" *ngIf="paper">
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-12 title">
       {{paper.title}}
     </div>
   </div>
-  <div class="row">
+  <div class="row author-list">
     <div class={{authorsColSize}} *ngFor="let author of paper.authorList">
       {{author.name}}
       <span class="sup">{{author.affiliationList}}</span>
     </div>
   </div>
-  <div class="row" *ngFor="let affiliation of paper.affiliationList">
+  <div class="row affiliation-list" *ngFor="let affiliation of paper.affiliationList">
     <div class="col-md-12">
       <span class="sup">{{affiliation.id}}</span>
       {{affiliation.university}}
