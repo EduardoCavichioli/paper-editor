@@ -1,3 +1,7 @@
-<p>
-  show-title works!
-</p>
+<div class="title-wrapper" *ngIf="paper">
+  <div class="row">
+    <div class="col-md-12">
+      {{paper.title}}
+    </div>
+  </div>
+</div>
