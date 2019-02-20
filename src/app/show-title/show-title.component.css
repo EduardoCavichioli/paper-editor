@@ -1,0 +1,10 @@
+.title-wrapper{
+    text-align: center;
+}
+
+.sup {
+    position: relative;
+    bottom: 1ex;
+    font-size: 80%;
+}
+

@@ -4,4 +4,16 @@
       {{paper.title}}
     </div>
   </div>
+  <div class="row">
+    <div class={{authorsColSize}} *ngFor="let author of paper.authorList">
+      {{author.name}}
+      <span class="sup">{{author.affiliationList}}</span>
+    </div>
+  </div>
+  <div class="row" *ngFor="let affiliation of paper.affiliationList">
+    <div class="col-md-12">
+      <span class="sup">{{affiliation.id}}</span>
+      {{affiliation.university}}
+    </div>
+  </div>
 </div>
