@@ -7,13 +7,13 @@
   <div class="row author-list">
     <div class={{authorsColSize}} *ngFor="let author of paper.authorList">
       {{author.name}}
-      <span class="sup">{{author.affiliationList}}</span>
+      <span class="sup" *ngIf="author.affiliationOrder">{{author.affiliationOrder}}</span>
     </div>
   </div>
-  <div class="row affiliation-list" *ngFor="let affiliation of paper.affiliationList">
+  <div class="row affiliation-list" *ngFor="let affiliation of affiliationList; let index = index">
     <div class="col-md-12">
-      <span class="sup">{{affiliation.id}}</span>
-      {{affiliation.university}}
+      <span class="sup">{{index+1}}</span>
+      {{affiliation}}
     </div>
   </div>
 </div>

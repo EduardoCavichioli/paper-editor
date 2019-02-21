@@ -1,5 +1,7 @@
+
 export class Author {
     id: number;
     name: string;
-    affiliationList: number[];
+    affiliationList: string[];
+    affiliationOrder?: string;
 }
