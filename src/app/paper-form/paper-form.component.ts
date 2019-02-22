@@ -15,11 +15,6 @@ export class PaperFormComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log(this.paper);
-
-    if(window.localStorage){
-      console.log('tem');
-    }
   }
 
   onReset(): void {

@@ -16,11 +16,12 @@ export class PaperEditorComponent implements OnInit {
   ngOnInit() {
     this.storageKey = 'key1';
     localStorage.setItem(this.storageKey, JSON.stringify(PAPER));
-    this.paper = JSON.parse(localStorage.getItem(this.storageKey));
+    this.paper = JSON.parse(localStorage.getItem(this.storageKey)) || new Paper();
+    
   }
 
   resetForm() {
-    this.paper = JSON.parse(localStorage.getItem(this.storageKey));
+    this.paper = JSON.parse(localStorage.getItem(this.storageKey)) || new Paper();
   }
 
   saveForm() {
