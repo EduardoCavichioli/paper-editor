@@ -7,10 +7,6 @@ import { PAPER } from './paper-mock';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  paper = PAPER;
   title = 'paper-title-private';
 
-  onReset() {
-    this.paper = PAPER;
-  }
 }
