@@ -19,11 +19,11 @@ export class PaperEditorComponent implements OnInit {
     this.paper = JSON.parse(localStorage.getItem(this.storageKey));
   }
 
-  onReset() {
+  resetForm() {
     this.paper = JSON.parse(localStorage.getItem(this.storageKey));
   }
 
-  onSave() {
+  saveForm() {
     localStorage.setItem(this.storageKey, JSON.stringify(this.paper));
   }
 }

@@ -7,7 +7,8 @@ import { Paper } from '../model/paper';
   styleUrls: ['./paper-form.component.css']
 })
 export class PaperFormComponent implements OnInit {
-  @Output() resetForm: EventEmitter<any> = new EventEmitter();
+  @Output() dispatchResetForm: EventEmitter<any> = new EventEmitter();
+  @Output() dispatchSaveForm: EventEmitter<any> = new EventEmitter();
   @Input() paper: Paper;
 
 
@@ -21,8 +22,12 @@ export class PaperFormComponent implements OnInit {
     }
   }
 
-  resetFormClicked(): void {
-    this.resetForm.emit();
+  onReset(): void {
+    this.dispatchResetForm.emit();
+  }
+
+  onSubmit(){
+    this.dispatchSaveForm.emit();
   }
 
 }

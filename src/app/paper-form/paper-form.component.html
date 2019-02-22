@@ -1,4 +1,4 @@
-<form>
+<form name='paperForm' (ngSubmit)="onSubmit()" #f="ngForm">
   <div class="form-group">
     <label for="title">Title</label>
     <input type="text" class="form-control" id="title" required [(ngModel)]="paper.title" name="title" #title="ngModel">
@@ -17,6 +17,6 @@
       </div>
     </div>
   </div>
-  <button class="btn btn-secondary" type="button" (click)="resetFormClicked()">Reset</button>
+  <button class="btn btn-secondary" type="button" (click)="onReset()">Reset</button>
   <button class="btn btn-success" type="submit">Save</button>
 </form>
