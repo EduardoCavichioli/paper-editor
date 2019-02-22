@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Paper } from '../model/paper';
 
 @Component({
@@ -7,12 +7,22 @@ import { Paper } from '../model/paper';
   styleUrls: ['./paper-form.component.css']
 })
 export class PaperFormComponent implements OnInit {
+  @Output() resetForm: EventEmitter<any> = new EventEmitter();
   @Input() paper: Paper;
+
 
   constructor() { }
 
   ngOnInit() {
     console.log(this.paper);
+
+    if(window.localStorage){
+      console.log('tem');
+    }
+  }
+
+  resetFormClicked(): void {
+    this.resetForm.emit();
   }
 
 }

@@ -9,4 +9,8 @@ import { PAPER } from './paper-mock';
 export class AppComponent {
   paper = PAPER;
   title = 'paper-title-private';
+
+  onReset() {
+    this.paper = PAPER;
+  }
 }

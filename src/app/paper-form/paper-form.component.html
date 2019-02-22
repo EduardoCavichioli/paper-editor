@@ -4,4 +4,19 @@
     <input type="text" class="form-control" id="title" required [(ngModel)]="paper.title" name="title" #title="ngModel">
     <div [hidden]="title.valid || title.pristine" class="alert alert-danger">Title is required</div>
   </div>
+  <div class="form-group">
+    <label>Authors</label>
+    <div class="row">
+      <div class="col-md-3" *ngFor="let author of paper.authorList">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">{{author.name}}</h5>
+            <span class="badge badge-primary" *ngFor="let aff of author.affiliationList">{{aff}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button class="btn btn-secondary" type="button" (click)="resetFormClicked()">Reset</button>
+  <button class="btn btn-success" type="submit">Save</button>
 </form>

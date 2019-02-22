@@ -3,7 +3,7 @@
     <app-show-title [paper]='paper'></app-show-title>
 </div>
 <div class="paper-form">
-    <app-paper-form [paper]="paper"></app-paper-form>
+    <app-paper-form [paper]="paper" (resetForm)="onReset"></app-paper-form>
 </div>
 
 <router-outlet></router-outlet>
