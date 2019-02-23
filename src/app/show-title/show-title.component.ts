@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, DoCheck } from '@angular/core';
 import { Paper } from '../model/paper';
 import { Author } from '../model/author';
 
@@ -7,7 +7,7 @@ import { Author } from '../model/author';
   templateUrl: './show-title.component.html',
   styleUrls: ['./show-title.component.css']
 })
-export class ShowTitleComponent implements OnInit {
+export class ShowTitleComponent implements OnInit, DoCheck {
   @Input() paper: Paper;
 
   authorsColSize = '';
@@ -16,10 +16,17 @@ export class ShowTitleComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    this.updatePreview();
+  }
+
+  ngDoCheck() {
+    this.updatePreview();
+  }
+
+  public updatePreview() {
     this.setAuthorColSize();
     this.getAffiliationList();
     this.getAffiliationSup();
-
   }
 
   setAuthorColSize() {

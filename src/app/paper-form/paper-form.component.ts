@@ -11,7 +11,6 @@ export class PaperFormComponent implements OnInit {
   @Output() dispatchSaveForm: EventEmitter<any> = new EventEmitter();
   @Input() paper: Paper;
 
-
   constructor() { }
 
   ngOnInit() {
@@ -25,4 +24,9 @@ export class PaperFormComponent implements OnInit {
     this.dispatchSaveForm.emit();
   }
 
+  removeAuthor(id: number): void {
+    let { authorList } = this.paper;
+    let index = authorList.map(author => author.id).indexOf(id);
+    authorList.splice(index,1);
+  }
 }
