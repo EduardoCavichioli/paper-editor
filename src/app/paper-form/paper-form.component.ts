@@ -33,9 +33,24 @@ export class PaperFormComponent implements OnInit {
     authorList.splice(index,1);
   }
 
-  open(author?: Author){
-    console.log(author);
+  get authors(): Author[] {
+    return this.paper.authorList;
+  }
+
+  open(selectedAuthor?: Author){
     const modalRef = this.modalService.open(AddAuthorModalComponent);
-    modalRef.componentInstance.test = 'lelalela';
+    modalRef.componentInstance.selectedAuthor = selectedAuthor;
+
+    modalRef.result.then((result) => {
+      let index = this.paper.authorList.map((author) => author.id).indexOf(result.authorId);
+      if(index >= 0){
+        let changedAuthor = this.authors[index];
+        changedAuthor.name = result.authorName;
+        changedAuthor.affiliationList = result.authorAffiliationList.map((aff) => aff.name);
+      }
+
+    }).catch((error) => {
+      console.log(error);
+    });
   }
 }
