@@ -12,12 +12,12 @@
         <input type="text" class="form-control" formControlName="authorName" />
       </div>
       <div class="form-group">
-        <label>Affiliations <span class="fas fa-plus-circle add-aff-button" (click)="addAff()"></span></label>
+        <label>Affiliations <span class="fas fa-plus-circle text-success" (click)="addAff()"></span></label>
         <div formArrayName="authorAffiliationList" *ngFor="let aff of affiliationArray.controls; let i = index;">
           <div [formGroupName]="i">
             <div class="input-group">
               <div class="input-group-prepend" (click)="removeAff(i)">
-                <div class="input-group-text remove-aff-button"><span class="fas fa-times"></span></div>
+                <div class="input-group-text text-danger"><span class="fas fa-times"></span></div>
               </div>
               <input class="form-control" formControlName="name" />
             </div>
