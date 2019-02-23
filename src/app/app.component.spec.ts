@@ -20,16 +20,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'paper-title-private'`, () => {
+  it(`should have as title 'paper-editor'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('paper-title-private');
+    expect(app.title).toEqual('paper-editor');
   });
 
   it('should render title in a h1 tag', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('Welcome to paper-title-private!');
+    expect(compiled.querySelector('h1').textContent).toContain('Welcome to paper-editor!');
   });
 });

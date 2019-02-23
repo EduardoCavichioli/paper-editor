@@ -7,6 +7,6 @@ import { PAPER } from './paper-mock';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'paper-title-private';
+  title = 'paper-editor';
 
 }

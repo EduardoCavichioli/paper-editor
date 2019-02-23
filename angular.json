@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "paper-title-private": {
+    "paper-editor": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/paper-title-private",
+            "outputPath": "dist/paper-editor",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -58,18 +58,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "paper-title-private:build"
+            "browserTarget": "paper-editor:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "paper-title-private:build:production"
+              "browserTarget": "paper-editor:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "paper-title-private:build"
+            "browserTarget": "paper-editor:build"
           }
         },
         "test": {
@@ -103,7 +103,7 @@
         }
       }
     },
-    "paper-title-private-e2e": {
+    "paper-editor-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "prefix": "",
@@ -112,11 +112,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "paper-title-private:serve"
+            "devServerTarget": "paper-editor:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "paper-title-private:serve:production"
+              "devServerTarget": "paper-editor:serve:production"
             }
           }
         },
@@ -132,5 +132,5 @@
       }
     }
   },
-  "defaultProject": "paper-title-private"
+  "defaultProject": "paper-editor"
 }
