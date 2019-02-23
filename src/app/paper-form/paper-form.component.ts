@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Paper } from '../model/paper';
 
 @Component({
@@ -11,7 +12,7 @@ export class PaperFormComponent implements OnInit {
   @Output() dispatchSaveForm: EventEmitter<any> = new EventEmitter();
   @Input() paper: Paper;
 
-  constructor() { }
+  constructor(private modalService: NgbModal) { }
 
   ngOnInit() {
   }
@@ -28,5 +29,13 @@ export class PaperFormComponent implements OnInit {
     let { authorList } = this.paper;
     let index = authorList.map(author => author.id).indexOf(id);
     authorList.splice(index,1);
+  }
+
+  open(modal){
+    this.modalService.open(modal, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+      console.log(result);
+    }, (reason) => {
+      console.log(reason);
+    });
   }
 }
