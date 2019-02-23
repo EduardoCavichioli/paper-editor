@@ -7,24 +7,36 @@
   <div class="form-group">
     <label>Authors <span class="fas fa-plus-circle add-btn" (click)="open()"></span></label>
     <div class="row">
-      <div class="col-md-3" *ngFor="let author of paper.authorList">
+      <div class="col-md-3" *ngFor="let author of authors; let i = index;">
         <div class="card">
+          <div class="card-header">
+            <div class="row">
+              <div class="col-md-6">
+                <span class="fas fa-chevron-circle-left" *ngIf="i > 0" (click)="moveLeft(author)">&nbsp;</span>
+                <span class="fas fa-chevron-circle-right" *ngIf="i < authors.length-1" (click)="moveRight(author)"></span>
+              </div>
+              <div class="col-md-6">
+                <div class="float-right">
+                  <span class="fas fa-edit" (click)="open(author)">&nbsp;</span>
+                  <span class="fas fa-times-circle remove-btn" (click)="removeAuthor(author.id)"></span>
+                </div>
+              </div>
+
+            </div>
+          </div>
           <div class="card-body">
             <div class="row">
-              <div class="col-md-9">
+              <div class="col-md-12">
                 <h5 class="card-title">{{author.name}}</h5>
               </div>
-              <div class="col-md-3">
-                <span class="fas fa-edit" (click)="open(author)"></span>
-                <span class="fas fa-times-circle remove-btn" (click)="removeAuthor(author.id)"></span>
-              </div>
             </div>
-            <div class="row">
+            <div class="row" *ngFor="let aff of author.affiliationList">
               <div class="col-md-12">
-                <span class="badge badge-primary" *ngFor="let aff of author.affiliationList">{{aff}}</span>
+                <span class="badge badge-primary">{{aff}}</span>
               </div>
             </div>
           </div>
+
         </div>
       </div>
     </div>

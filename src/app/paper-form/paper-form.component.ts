@@ -75,4 +75,22 @@ export class PaperFormComponent implements OnInit {
     newAuthor.affiliationList = result.authorAffiliationList.map((aff: any) => aff.name);
     this.authors.push(newAuthor);
   }
+
+  //moves author to the right
+  private moveRight(author: Author): void {
+    let index: number = this.authors.map((author: Author) => author.id).indexOf(author.id);
+    if (index < this.authors.length - 1) {
+      let first: Author = this.authors.splice(index, 1, this.authors[index + 1])[0];
+      this.authors.splice(index + 1, 1, first);
+    }
+  }
+
+  //moves author to the left
+  private moveLeft(author: Author): void {
+    let index: number = this.authors.map((author: Author) => author.id).indexOf(author.id);
+    if (index > 0) {
+      let first: Author = this.authors.splice(index - 1, 1, this.authors[index])[0];
+      this.authors.splice(index, 1, first);
+    }
+  }
 }
