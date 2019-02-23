@@ -64,7 +64,7 @@ export class PaperFormComponent implements OnInit {
   private modifyAuthor(index: number, result: any): void {
     let changedAuthor = this.authors[index];
     changedAuthor.name = result.authorName;
-    changedAuthor.affiliationList = result.authorAffiliationList.map((aff: any) => aff.name);
+    changedAuthor.affiliationList = this.formatAffList(result.authorAffiliationList);
   }
 
   //adds author to paper through modal
@@ -72,8 +72,13 @@ export class PaperFormComponent implements OnInit {
     let newAuthor = new Author();
     newAuthor.id = result.authorId;
     newAuthor.name = result.authorName;
-    newAuthor.affiliationList = result.authorAffiliationList.map((aff: any) => aff.name);
+    newAuthor.affiliationList = this.formatAffList(result.authorAffiliationList);
     this.authors.push(newAuthor);
+  }
+
+  //returns affiliation list as string array
+  private formatAffList(affList: any[]): string[] {
+    return affList.map((aff: any) => aff.name).filter((aff: string) => aff);
   }
 
   //moves author to the right

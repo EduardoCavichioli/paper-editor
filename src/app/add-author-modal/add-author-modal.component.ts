@@ -39,7 +39,7 @@ export class AddAuthorModalComponent implements OnInit {
 
     this.authorForm = this.fb.group({
       authorId: id,
-      authorName: name,
+      authorName: [name, Validators.required],
       authorAffiliationList: this.fb.array([])
     });
 
@@ -51,7 +51,7 @@ export class AddAuthorModalComponent implements OnInit {
   //creates form item for affiliations
   private createAffListItem(affName?: string): FormGroup {
     return this.fb.group({
-      name: affName || ''
+      name: [affName || '', Validators.required]
     });
   }
 
