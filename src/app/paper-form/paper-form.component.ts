@@ -47,8 +47,13 @@ export class PaperFormComponent implements OnInit {
         let changedAuthor = this.authors[index];
         changedAuthor.name = result.authorName;
         changedAuthor.affiliationList = result.authorAffiliationList.map((aff) => aff.name);
+      } else {
+        let newAuthor = new Author();
+        newAuthor.id = result.authorId;
+        newAuthor.name = result.authorName;
+        newAuthor.affiliationList = result.authorAffiliationList.map((aff) => aff.name);
+        this.authors.push(newAuthor);
       }
-
     }).catch((error) => {
       console.log(error);
     });
