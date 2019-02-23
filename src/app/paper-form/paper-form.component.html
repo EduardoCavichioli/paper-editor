@@ -5,7 +5,7 @@
     <div [hidden]="title.valid || title.pristine" class="alert alert-danger">Title is required</div>
   </div>
   <div class="form-group">
-    <label>Authors <span class="fas fa-plus-circle add-btn" (click)="open(addAuthorModal)"></span></label>
+    <label>Authors <span class="fas fa-plus-circle add-btn" (click)="open()"></span></label>
     <div class="row">
       <div class="col-md-3" *ngFor="let author of paper.authorList">
         <div class="card">
@@ -15,7 +15,7 @@
                 <h5 class="card-title">{{author.name}}</h5>
               </div>
               <div class="col-md-3">
-                <span class="fas fa-edit" (click)="open(addAuthorModal)"></span>
+                <span class="fas fa-edit" (click)="open(author)"></span>
                 <span class="fas fa-times-circle remove-btn" (click)="removeAuthor(author.id)"></span>
               </div>
             </div>
@@ -32,18 +32,3 @@
   <button class="btn btn-secondary" type="button" (click)="onReset()">Reset</button>
   <button class="btn btn-success" type="submit">Save</button>
 </form>
-
-<ng-template #addAuthorModal let-modal>
-  <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Add Author</h4>
-    <button class="close" type="button" aria-label="Close" (click)="modal.dismiss('Cross click')">
-      <span class="fas fa-times"></span>
-    </button>
-  </div>
-  <div class="modal-body">
-    lalala
-  </div>
-  <div class="modal-footer">
-    <button class="btn btn-primary" type="button" (click)="modal.close('save')">Save</button>
-  </div>
-</ng-template>

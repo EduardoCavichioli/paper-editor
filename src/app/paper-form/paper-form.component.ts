@@ -1,6 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Paper } from '../model/paper';
+import { AddAuthorModalComponent } from './../add-author-modal/add-author-modal.component';
+import { Author } from '../model/author';
 
 @Component({
   selector: 'app-paper-form',
@@ -31,11 +33,9 @@ export class PaperFormComponent implements OnInit {
     authorList.splice(index,1);
   }
 
-  open(modal){
-    this.modalService.open(modal, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
-      console.log(result);
-    }, (reason) => {
-      console.log(reason);
-    });
+  open(author?: Author){
+    console.log(author);
+    const modalRef = this.modalService.open(AddAuthorModalComponent);
+    modalRef.componentInstance.test = 'lelalela';
   }
 }
