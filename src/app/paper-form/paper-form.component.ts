@@ -10,52 +10,69 @@ import { Author } from '../model/author';
   styleUrls: ['./paper-form.component.css']
 })
 export class PaperFormComponent implements OnInit {
+  //interfaces
+  @Input() paper: Paper;
   @Output() dispatchResetForm: EventEmitter<any> = new EventEmitter();
   @Output() dispatchSaveForm: EventEmitter<any> = new EventEmitter();
-  @Input() paper: Paper;
 
   constructor(private modalService: NgbModal) { }
 
   ngOnInit() {
   }
 
-  onReset(): void {
-    this.dispatchResetForm.emit();
-  }
-
-  onSubmit(){
-    this.dispatchSaveForm.emit();
-  }
-
-  removeAuthor(id: number): void {
-    let { authorList } = this.paper;
-    let index = authorList.map(author => author.id).indexOf(id);
-    authorList.splice(index,1);
-  }
-
-  get authors(): Author[] {
+  //getters
+  private get authors(): Author[] {
     return this.paper.authorList;
   }
 
-  open(selectedAuthor?: Author){
+  //methods
+  //resets the paper to localStorage state
+  private onReset(): void {
+    this.dispatchResetForm.emit();
+  }
+
+  //saves paper's state to localStorage
+  private onSubmit(): void {
+    this.dispatchSaveForm.emit();
+  }
+
+  //removes author from paper
+  private removeAuthor(id: number): void {
+    let { authorList } = this.paper;
+    let index = authorList.map(author => author.id).indexOf(id);
+    authorList.splice(index, 1);
+  }
+
+  //opens modal to add or edit author
+  private open(selectedAuthor?: Author): void {
     const modalRef = this.modalService.open(AddAuthorModalComponent);
     modalRef.componentInstance.selectedAuthor = selectedAuthor;
 
     modalRef.result.then((result) => {
-      let index = this.paper.authorList.map((author) => author.id).indexOf(result.authorId);
-      if(index >= 0){
-        let changedAuthor = this.authors[index];
-        changedAuthor.name = result.authorName;
-        changedAuthor.affiliationList = result.authorAffiliationList.map((aff) => aff.name);
+      let index = this.authors.map((author) => author.id).indexOf(result.authorId);
+      if (index >= 0) {
+        this.modifyAuthor(index, result);
       } else {
-        let newAuthor = new Author();
-        newAuthor.id = result.authorId;
-        newAuthor.name = result.authorName;
-        newAuthor.affiliationList = result.authorAffiliationList.map((aff) => aff.name);
-        this.authors.push(newAuthor);
+        this.addAuthor(result);
       }
     }).catch((error) => {
       console.log(error);
     });
+  }
+
+  //modifies author from paper through modal
+  private modifyAuthor(index: number, result: any): void {
+    let changedAuthor = this.authors[index];
+    changedAuthor.name = result.authorName;
+    changedAuthor.affiliationList = result.authorAffiliationList.map((aff: any) => aff.name);
+  }
+
+  //adds author to paper through modal
+  private addAuthor(result: any): void {
+    let newAuthor = new Author();
+    newAuthor.id = result.authorId;
+    newAuthor.name = result.authorName;
+    newAuthor.affiliationList = result.authorAffiliationList.map((aff: any) => aff.name);
+    this.authors.push(newAuthor);
   }
 }

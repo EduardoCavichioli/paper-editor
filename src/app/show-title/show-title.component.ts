@@ -8,8 +8,10 @@ import { Author } from '../model/author';
   styleUrls: ['./show-title.component.css']
 })
 export class ShowTitleComponent implements OnInit, DoCheck {
+  //interfaces
   @Input() paper: Paper;
 
+  //variables
   authorsColSize = '';
   affiliationList: string[];
 
@@ -23,13 +25,16 @@ export class ShowTitleComponent implements OnInit, DoCheck {
     this.updatePreview();
   }
 
-  public updatePreview() {
+  //methods
+  //updates paper preview
+  private updatePreview(): void {
     this.setAuthorColSize();
     this.getAffiliationList();
     this.getAffiliationSup();
   }
 
-  setAuthorColSize() {
+  //sets column size for authors in paper preview
+  private setAuthorColSize(): void {
     if (this.paper && this.paper.authorList) {
       let authorsPerLine = 12 / this.paper.authorList.length;
       let colSize = authorsPerLine < 3 ? 3 : authorsPerLine;
@@ -37,27 +42,28 @@ export class ShowTitleComponent implements OnInit, DoCheck {
     }
   }
 
-  getAffiliationList() {
+  //generates affiliation list using authors data
+  private getAffiliationList(): void {
     let affiliationSet = new Set();
-    this.paper.authorList.forEach(author => {
-      author.affiliationList.forEach(aff => {
+    this.paper.authorList.forEach((author: Author) => {
+      author.affiliationList.forEach((aff: string) => {
         affiliationSet.add(aff);
       })
     });
     this.affiliationList = [...affiliationSet];
   }
 
-  getAffiliationSup() {
-    this.paper.authorList.forEach(author => {
+  //generates authors sup for affiliations using list created in getAffiliationList() method
+  private getAffiliationSup(): void {
+    this.paper.authorList.forEach((author: Author) => {
       let order: number[] = [];
-      author.affiliationList.forEach(aff => {
-        let index = this.affiliationList.indexOf(aff)+1;
+      author.affiliationList.forEach((aff: string) => {
+        let index = this.affiliationList.indexOf(aff) + 1;
         if (index) {
           order.push(index);
         }
       });
-      author.affiliationOrder = order.sort((a,b) => a-b).join(',');
+      author.affiliationOrder = order.sort((a, b) => a - b).join(',');
     });
   }
-
 }

@@ -8,6 +8,7 @@ import { Paper } from './../model/paper';
   styleUrls: ['./paper-editor.component.css']
 })
 export class PaperEditorComponent implements OnInit {
+  //variables
   paper: Paper;
   storageKey: string;
 
@@ -17,14 +18,16 @@ export class PaperEditorComponent implements OnInit {
     this.storageKey = 'key1';
     localStorage.setItem(this.storageKey, JSON.stringify(PAPER));
     this.paper = JSON.parse(localStorage.getItem(this.storageKey)) || new Paper();
-    
   }
 
-  resetForm() {
+  //methods
+  //resets paper to localStorage state
+  private resetForm(): void {
     this.paper = JSON.parse(localStorage.getItem(this.storageKey)) || new Paper();
   }
 
-  saveForm() {
+  //saves paper's state to localStorage
+  private saveForm(): void {
     localStorage.setItem(this.storageKey, JSON.stringify(this.paper));
   }
 }

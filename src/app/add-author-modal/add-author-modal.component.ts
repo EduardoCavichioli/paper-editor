@@ -9,7 +9,10 @@ import { FormGroup, FormBuilder, FormControl, Validators, FormArray } from '@ang
   styleUrls: ['./add-author-modal.component.css']
 })
 export class AddAuthorModalComponent implements OnInit {
+  //interfaces
   @Input() selectedAuthor: Author;
+
+  //variables
   authorForm: FormGroup;
   affiliationListForm: FormArray;
   buttonLabel = '';
@@ -17,45 +20,53 @@ export class AddAuthorModalComponent implements OnInit {
   constructor(
     public activeModal: NgbActiveModal,
     private fb: FormBuilder
-    ) {}
+  ) { }
 
   ngOnInit() {
     this.createForm();
     this.buttonLabel = this.selectedAuthor ? 'Save' : 'Add';
   }
 
-  private createForm() {
+  //getters
+  private get affiliationArray(): FormArray {
+    return this.authorForm.get('authorAffiliationList') as FormArray;
+  }
+
+  //methods
+  //initializes form to add or edit author
+  private createForm(): void {
     let { id, name, affiliationList } = this.selectedAuthor || new Author();
-    console.log(this.selectedAuthor);
+
     this.authorForm = this.fb.group({
       authorId: id,
       authorName: name,
       authorAffiliationList: this.fb.array([])
     });
-    affiliationList.forEach((aff) => {
+
+    affiliationList.forEach((aff: string) => {
       this.affiliationArray.push(this.createAffListItem(aff));
     });
   }
 
+  //creates form item for affiliations
   private createAffListItem(affName?: string): FormGroup {
     return this.fb.group({
       name: affName || ''
     });
   }
 
-  addAff() {
+  //adds affiliation
+  private addAff(): void {
     this.affiliationArray.push(this.createAffListItem());
   }
 
-  removeAff(index: number) {
+  //removes affiliation
+  private removeAff(index: number): void {
     this.affiliationArray.removeAt(index);
   }
 
-  private get affiliationArray(): FormArray{
-    return this.authorForm.get('authorAffiliationList') as FormArray;
-  }
-
-  private submitForm() {
+  //submits the form data
+  private submitForm(): void {
     this.activeModal.close(this.authorForm.value);
   }
 
