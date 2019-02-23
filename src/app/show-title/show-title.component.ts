@@ -56,7 +56,7 @@ export class ShowTitleComponent implements OnInit, DoCheck {
           order.push(index);
         }
       });
-      author.affiliationOrder = order.join(',');
+      author.affiliationOrder = order.sort((a,b) => a-b).join(',');
     });
   }
 

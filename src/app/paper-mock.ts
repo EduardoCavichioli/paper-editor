@@ -15,8 +15,8 @@ export const PAPER: Paper =
             id: 2,
             name: "Christie Chang",
             affiliationList: [
-                "University of Utopia",
-                "Neverland Institute of Technology"
+                "Neverland Institute of Technology",
+                "University of Utopia"
             ]
         },
         {
