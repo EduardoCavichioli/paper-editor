@@ -39,7 +39,7 @@ export class PaperFormComponent implements OnInit {
   //removes author from paper
   private removeAuthor(id: number): void {
     let { authorList } = this.paper;
-    let index = authorList.map(author => author.id).indexOf(id);
+    let index: number = authorList.map(author => author.id).indexOf(id);
     authorList.splice(index, 1);
   }
 
@@ -48,8 +48,8 @@ export class PaperFormComponent implements OnInit {
     const modalRef = this.modalService.open(AddAuthorModalComponent);
     modalRef.componentInstance.selectedAuthor = selectedAuthor;
 
-    modalRef.result.then((result) => {
-      let index = this.authors.map((author) => author.id).indexOf(result.authorId);
+    modalRef.result.then((result: any) => {
+      let index: number = this.authors.map(author => author.id).indexOf(result.authorId);
       if (index >= 0) {
         this.modifyAuthor(index, result);
       } else {

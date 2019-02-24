@@ -1,8 +1,16 @@
 <div class="editor-wrapper">
-  <div class="paper-title">
-    <app-show-title [paper]="paper"></app-show-title>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="paper-title">
+        <app-show-title [paper]="paper"></app-show-title>
+      </div>
+    </div>
   </div>
-  <div class="paper-form">
-    <app-paper-form [paper]="paper" (dispatchResetForm)="resetForm()" (dispatchSaveForm)="saveForm()"></app-paper-form>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="paper-form">
+        <app-paper-form [paper]="paper" (dispatchResetForm)="resetForm()" (dispatchSaveForm)="saveForm()"></app-paper-form>
+      </div>
+    </div>
   </div>
 </div>

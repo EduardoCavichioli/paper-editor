@@ -9,24 +9,34 @@
     <div class="container">
       <div class="form-group">
         <label for="authorName">Author Name</label>
-        <input type="text" class="form-control" formControlName="authorName" />
+        <input #authorName type="text" class="form-control" formControlName="authorName" [ngClass]="{'is-invalid': submitted && authorForm.controls.authorName.errors}" />
+        <div *ngIf="submitted && authorForm.controls.authorName.errors" class="invalid-feedback">
+          <span *ngIf="submitted && authorForm.controls.authorName.errors.required">Author name is required</span>
+        </div>
       </div>
       <div class="form-group">
-        <label>Affiliations <button class="btn btn-link btn-add-affiliation" type="button" (click)="addAff()" [disabled]="!authorForm.valid"><span class="fas fa-plus-circle text-success"></span></button>  </label>
+        <label>Affiliations
+          <button class="btn btn-link btn-add-affiliation" type="button" (click)="addAff()" [disabled]="!authorForm.valid">
+            <span class="fas fa-plus-circle text-success"></span>
+          </button>
+        </label>
         <div formArrayName="authorAffiliationList" *ngFor="let aff of affiliationArray.controls; let i = index;">
           <div [formGroupName]="i">
             <div class="input-group">
               <div class="input-group-prepend" (click)="removeAff(i)">
                 <div class="input-group-text text-danger"><span class="fas fa-times"></span></div>
               </div>
-              <input class="form-control" formControlName="name" />
+              <input class="form-control" formControlName="name" [ngClass]="{'is-invalid': submitted && aff.controls.name.errors}" />
             </div>
+          </div>
+          <div *ngIf="submitted && aff.controls.name.errors">
+            <div *ngIf="aff.controls.name.errors.required" class="text-danger">Please do not send empty Affiliations</div>
           </div>
         </div>
       </div>
     </div>
   </div>
   <div class="modal-footer">
-    <button class="btn btn-success" type="submit" [disabled]="!authorForm.valid">{{buttonLabel}}</button>
+    <button class="btn btn-success" type="submit">{{buttonLabel}}</button>
   </div>
 </form>

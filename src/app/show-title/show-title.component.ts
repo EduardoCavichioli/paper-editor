@@ -12,7 +12,7 @@ export class ShowTitleComponent implements OnInit, DoCheck {
   @Input() paper: Paper;
 
   //variables
-  authorsColSize = '';
+  authorsColSize: string = '';
   affiliationList: string[];
 
   constructor() { }
@@ -36,15 +36,15 @@ export class ShowTitleComponent implements OnInit, DoCheck {
   //sets column size for authors in paper preview
   private setAuthorColSize(): void {
     if (this.paper && this.paper.authorList) {
-      let authorsPerLine = 12 / this.paper.authorList.length;
-      let colSize = authorsPerLine < 3 ? 3 : authorsPerLine;
+      let authorsPerLine: number = 12 / this.paper.authorList.length;
+      let colSize: number = authorsPerLine < 3 ? 3 : authorsPerLine;
       this.authorsColSize = 'author col-md-' + colSize;
     }
   }
 
   //generates affiliation list using authors data
   private getAffiliationList(): void {
-    let affiliationSet = new Set();
+    let affiliationSet: Set<string> = new Set();
     this.paper.authorList.forEach((author: Author) => {
       author.affiliationList.forEach((aff: string) => {
         affiliationSet.add(aff);
@@ -58,7 +58,7 @@ export class ShowTitleComponent implements OnInit, DoCheck {
     this.paper.authorList.forEach((author: Author) => {
       let order: number[] = [];
       author.affiliationList.forEach((aff: string) => {
-        let index = this.affiliationList.indexOf(aff) + 1;
+        let index: number = this.affiliationList.indexOf(aff) + 1;
         if (index) {
           order.push(index);
         }

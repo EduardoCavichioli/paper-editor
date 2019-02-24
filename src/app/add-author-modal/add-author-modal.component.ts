@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Author } from '../model/author';
 import { FormGroup, FormBuilder, FormControl, Validators, FormArray } from '@angular/forms';
@@ -11,11 +11,13 @@ import { FormGroup, FormBuilder, FormControl, Validators, FormArray } from '@ang
 export class AddAuthorModalComponent implements OnInit {
   //interfaces
   @Input() selectedAuthor: Author;
+  @ViewChild('authorName') nameField: ElementRef;
 
   //variables
   authorForm: FormGroup;
   affiliationListForm: FormArray;
-  buttonLabel = '';
+  buttonLabel: string = '';
+  submitted: boolean = false;
 
   constructor(
     public activeModal: NgbActiveModal,
@@ -25,6 +27,9 @@ export class AddAuthorModalComponent implements OnInit {
   ngOnInit() {
     this.createForm();
     this.buttonLabel = this.selectedAuthor ? 'Save' : 'Add';
+
+    this.nameField.nativeElement.focus();
+
   }
 
   //getters
@@ -67,6 +72,11 @@ export class AddAuthorModalComponent implements OnInit {
 
   //submits the form data
   private submitForm(): void {
+    this.submitted = true;
+
+    if (this.authorForm.invalid) {
+      return;
+    }
     this.activeModal.close(this.authorForm.value);
   }
 
