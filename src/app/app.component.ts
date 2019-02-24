@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { PAPER } from './paper-mock';
 
 @Component({
@@ -6,7 +6,18 @@ import { PAPER } from './paper-mock';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-  title = 'paper-editor';
+export class AppComponent implements OnInit  {
+  //variables
+  title: string = 'Paper Editor';
+  isCollapsed: boolean;
+
+  ngOnInit() {
+    this.isCollapsed = true;
+  }
+
+  //methods
+  private onCollapse(): void {
+    this.isCollapsed = !this.isCollapsed;
+  }
 
 }

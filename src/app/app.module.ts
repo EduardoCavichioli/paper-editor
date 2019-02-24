@@ -9,6 +9,7 @@ import { ShowTitleComponent } from './show-title/show-title.component';
 import { PaperFormComponent } from './paper-form/paper-form.component';
 import { PaperEditorComponent } from './paper-editor/paper-editor.component';
 import { AddAuthorModalComponent } from './add-author-modal/add-author-modal.component';
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { AddAuthorModalComponent } from './add-author-modal/add-author-modal.com
     ShowTitleComponent,
     PaperFormComponent,
     PaperEditorComponent,
-    AddAuthorModalComponent
+    AddAuthorModalComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,
