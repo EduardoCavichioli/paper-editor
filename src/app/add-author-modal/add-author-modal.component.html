@@ -8,8 +8,8 @@
   <div class="modal-body">
     <div class="container">
       <div class="form-group">
-        <label for="authorName">Author Name</label>
-        <input #authorName type="text" class="form-control" formControlName="authorName" [ngClass]="{'is-invalid': submitted && authorForm.controls.authorName.errors}" />
+        <label for="authorName">Author Name <span class="text-danger">*</span></label>
+        <input #authorName type="text" class="form-control" formControlName="authorName" [ngClass]="{'is-invalid': submitted && authorForm.controls.authorName.errors}" placeholder="Name"/>
         <div *ngIf="submitted && authorForm.controls.authorName.errors" class="invalid-feedback">
           <span *ngIf="submitted && authorForm.controls.authorName.errors.required">Author name is required</span>
         </div>
@@ -26,11 +26,11 @@
               <div class="input-group-prepend" (click)="removeAff(i)">
                 <div class="input-group-text text-danger"><span class="fas fa-times"></span></div>
               </div>
-              <input class="form-control" formControlName="name" [ngClass]="{'is-invalid': submitted && aff.controls.name.errors}" />
+              <input class="form-control" formControlName="name" [ngClass]="{'is-invalid': submitted && aff.controls.name.errors}" placeholder="Affiliation"/>
             </div>
           </div>
           <div *ngIf="submitted && aff.controls.name.errors">
-            <div *ngIf="aff.controls.name.errors.required" class="text-danger">Please do not send empty Affiliations</div>
+            <div *ngIf="aff.controls.name.errors.required" class="text-danger">You cannot add empty Affiliations</div>
           </div>
         </div>
       </div>
