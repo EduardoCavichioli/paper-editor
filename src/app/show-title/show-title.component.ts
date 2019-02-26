@@ -47,7 +47,7 @@ export class ShowTitleComponent implements OnInit, DoCheck {
     let affiliationSet: Set<string> = new Set();
     this.paper.authorList.forEach((author: Author) => {
       author.affiliationList.forEach((aff: string) => {
-        affiliationSet.add(aff);
+        affiliationSet.add(aff.toLowerCase());
       })
     });
     this.affiliationList = [...affiliationSet];

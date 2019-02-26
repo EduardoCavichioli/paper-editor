@@ -78,7 +78,7 @@ export class PaperFormComponent implements OnInit {
 
   //returns affiliation list as string array
   private formatAffList(affList: any[]): string[] {
-    let unique: Set<string> = new Set(affList.map((aff: any) => aff.name));
+    let unique: Set<string> = new Set(affList.map((aff: any) => aff.name.toLowerCase()));
     return [ ...unique ];
   }
 
