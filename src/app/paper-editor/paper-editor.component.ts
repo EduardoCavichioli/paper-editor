@@ -21,13 +21,18 @@ export class PaperEditorComponent implements OnInit {
   }
 
   //methods
-  //resets paper to localStorage state
-  private resetForm(): void {
+  //reloads paper to localStorage state
+  private reloadForm(): void {
     this.paper = JSON.parse(localStorage.getItem(this.storageKey)) || new Paper();
   }
 
   //saves paper's state to localStorage
   private saveForm(): void {
     localStorage.setItem(this.storageKey, JSON.stringify(this.paper));
+  }
+
+  //clear all form data
+  private resetForm(): void {
+    this.paper = new Paper();
   }
 }

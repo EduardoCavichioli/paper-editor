@@ -58,7 +58,7 @@ export class ShowTitleComponent implements OnInit, DoCheck {
     this.paper.authorList.forEach((author: Author) => {
       let order: number[] = [];
       author.affiliationList.forEach((aff: string) => {
-        let index: number = this.affiliationList.indexOf(aff) + 1;
+        let index: number = this.affiliationList.indexOf(aff.toLowerCase()) + 1;
         if (index) {
           order.push(index);
         }

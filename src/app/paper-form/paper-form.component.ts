@@ -12,8 +12,9 @@ import { Author } from '../model/author';
 export class PaperFormComponent implements OnInit {
   //interfaces
   @Input() paper: Paper;
-  @Output() dispatchResetForm: EventEmitter<any> = new EventEmitter();
+  @Output() dispatchReloadForm: EventEmitter<any> = new EventEmitter();
   @Output() dispatchSaveForm: EventEmitter<any> = new EventEmitter();
+  @Output() dispatchResetForm: EventEmitter<any> = new EventEmitter();
 
   constructor(private modalService: NgbModal) { }
 
@@ -26,14 +27,19 @@ export class PaperFormComponent implements OnInit {
   }
 
   //methods
-  //resets the paper to localStorage state
-  private onReset(): void {
-    this.dispatchResetForm.emit();
+  //reloads the paper to localStorage state
+  private onReload(): void {
+    this.dispatchReloadForm.emit();
   }
 
   //saves paper's state to localStorage
   private onSubmit(): void {
     this.dispatchSaveForm.emit();
+  }
+
+  //clear all form data
+  private onReset(): void {
+    this.dispatchResetForm.emit();
   }
 
   //removes author from paper
